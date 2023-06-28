@@ -9,12 +9,12 @@
 一、安装常用工具
 ```
 apt-get update
-apt-get install git jq htop iperf3 net-tools -y
+apt-get install -y git jq htop iperf3 net-tools
 ```
 
 二、准备编译环境
 ```
-apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper
+apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper
 ```
 
 三、获取内核源代码（目前版本6.3.9-xanmod1）
