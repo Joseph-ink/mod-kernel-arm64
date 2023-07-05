@@ -12,7 +12,7 @@
 一、安装常用工具
 ```
 apt-get update
-apt-get install -y git jq htop iperf3 net-tools
+apt-get install -y git jq htop iperf3 net-tools vim socat
 ```
 
 二、准备编译环境
