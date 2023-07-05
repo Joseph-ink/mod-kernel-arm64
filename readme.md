@@ -43,7 +43,7 @@ debian/canonical-revoked-certs.pem
 
 六、编译内核
 ```
-make -j$(nproc)
+make CFLAGS="-march=native -O2 -fomit-frame-pointer -pipe" -j$(nproc)
 ```
 
 七、生成deb包
