@@ -17,7 +17,7 @@ apt-get install -y git jq htop iperf3 net-tools vim socat wget
 
 二、准备编译环境
 ```
-apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper bc ccache cpio fakeroot kmod libncurses5-dev lz4 qtbase5-dev rsync schedtool zstd
+apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper bc ccache cpio fakeroot kmod libncurses5-dev lz4 qtbase5-dev rsync schedtool zstd clang llvm lld
 ```
 
 三、获取内核源代码（目前版本6.3.9-xanmod1）
