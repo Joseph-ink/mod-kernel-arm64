@@ -50,6 +50,7 @@ make deb-pkg
 ```
 
 ### 三、使用LLVM/Clang编译
+```
 1.安装最新LLVM/Clang
 bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 设置环境变量优先调用
@@ -67,3 +68,4 @@ make LLVM=1 -j$(nproc)
 
 5.生成deb包
 make LLVM=1 deb-pkg
+```
