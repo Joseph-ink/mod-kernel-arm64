@@ -1,37 +1,34 @@
-## 编译于oracle甲骨文arm64机型
+## 操作步骤如下，可以自行编译（建议在纯净系统上编译）
 
-### 不建议主力生产机器使用，风险自行承担
+## 以xanmod内核编译为例：
 
+### 一、条件准备
 
-
-经测试延迟更低（但不排除样本量小和网络正常波动）；
-
-#### 操作步骤如下，可以自行编译（建议在纯净系统上编译）
-
-以xanmod内核编译为例：
-一、安装常用工具
+1.安装常用工具
 ```
 apt-get update
-apt-get install -y git jq htop iperf3 net-tools vim devscripts socat wget net-tools make pkg-config libmnl-dev libbpf-dev libtirpc-dev libcap-dev libdb-dev software-properties-common dwarves
+apt-get install -y git jq htop iperf3 net-tools vim devscripts socat wget net-tools make pkg-config libmnl-dev libatm1-dev libbpf-dev libtirpc-dev libcap-dev libdb-dev software-properties-common dwarves
 ```
 
-二、准备编译环境
+2.准备编译环境
 ```
 apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper bc ccache cpio fakeroot kmod libncurses5-dev lz4 qtbase5-dev rsync schedtool zstd clang llvm lld
 ```
 
-三、获取内核源代码（目前版本6.3.9-xanmod1）
+3.获取内核源代码（目前版本6.4.11-xanmod1）
 ```
-git clone -b 6.3.9-xanmod1 https://github.com/xanmod/linux.git
+git clone -b 6.4.11-xanmod1 https://github.com/xanmod/linux.git
 cd linux
 ```
 
-四、配置内核
+### 二、使用默认GNU/GCC编译
+
+1.配置内核
 ```
 make menuconfig
 ```
 
-五、（可能）处理错误
+2.处理（可能）错误
 ```
 vi .config
 ```
@@ -41,17 +38,32 @@ debian/canonical-certs.pem
 debian/canonical-revoked-certs.pem
 ```
 
-六、编译内核
+3.编译内核
 建议方法
 ```
-make CFLAGS="-march=native -O2 -fomit-frame-pointer -pipe" -j$(nproc)
-```
-#测试极致优化
-```
-make CFLAGS="-march=native -O3 -flto -fomit-frame-pointer -pipe" -j$(nproc)
+make -j$(nproc)
 ```
 
-七、生成deb包
+4.生成deb包
 ```
 make deb-pkg
 ```
+
+### 三、使用LLVM/Clang编译
+1.安装最新LLVM/Clang
+bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+设置环境变量优先调用
+export PATH=/usr/lib/llvm-17/bin:$PATH
+
+2.配置内核
+make LLVM=1 menuconfig
+
+3.处理（可能）错误
+移除字段
+-fexcess-precision=fast
+
+4.编译内核
+make LLVM=1 -j$(nproc)
+
+5.生成deb包
+make LLVM=1 deb-pkg
