@@ -7,7 +7,7 @@
 1.安装常用工具
 ```
 apt-get update
-apt-get install -y git jq htop iperf3 net-tools vim devscripts socat wget net-tools make pkg-config libmnl-dev libatm1-dev libbpf-dev libtirpc-dev libcap-dev libdb-dev software-properties-common dwarves
+apt-get install -y git jq htop iperf3 net-tools stress-ng vim devscripts socat wget net-tools make pkg-config libmnl-dev libatm1-dev libbpf-dev libtirpc-dev libcap-dev libdb-dev software-properties-common dwarves
 ```
 
 2.准备编译环境
