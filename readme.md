@@ -41,12 +41,12 @@ debian/canonical-revoked-certs.pem
 3.编译内核
 建议方法
 ```
-make -j$(nproc)
+make KCFLAGS="-mcpu=neoverse-n1 -fomit-frame-pointer -pipe" -j$(nproc)
 ```
 
 4.生成deb包
 ```
-make deb-pkg
+make deb-pkg -j$(nproc)
 ```
 
 ### 三、使用LLVM/Clang编译
@@ -57,15 +57,17 @@ bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 export PATH=/usr/lib/llvm-17/bin:$PATH
 
 2.配置内核
-make LLVM=1 menuconfig
+make LLVM=1 LLVM_IAS=1 menuconfig
+
+
 
 3.处理（可能）错误
 移除字段
 -fexcess-precision=fast
 
 4.编译内核
-make LLVM=1 -j$(nproc)
+make LLVM=1 LLVM_IAS=1 KCFLAGS="-mcpu=neoverse-n1 -fomit-frame-pointer -pipe" -j$(nproc)
 
 5.生成deb包
-make LLVM=1 deb-pkg
+make LLVM=1 LLVM_IAS=1 deb-pkg -j$(nproc)
 ```
