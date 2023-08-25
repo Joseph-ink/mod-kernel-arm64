@@ -71,3 +71,46 @@ make LLVM=1 LLVM_IAS=1 KCFLAGS="-mcpu=neoverse-n1 -fomit-frame-pointer -pipe" -j
 5.生成deb包
 make LLVM=1 LLVM_IAS=1 deb-pkg -j$(nproc)
 ```
+### 四、性能测试
+使用以下命令
+```
+jitterdebugger -D 1m -c 'stress-ng --cpu-method loop -c 8'
+```
+对比不同调度器内核
+```
+linux 6.4.0
+T: 0 ( 8353) A: 0 C:   1799996 Min:         5 Avg:    6.83 Max:      1178 
+T: 1 ( 8354) A: 1 C:   1799993 Min:         5 Avg:    6.80 Max:       858
+
+linux 6.4.11 bmq
+T: 0 (  462) A: 0 C:   1799998 Min:         4 Avg:    5.58 Max:       125 
+T: 1 (  463) A: 1 C:   1799996 Min:         4 Avg:    5.32 Max:       123
+
+linux 6.4.11 pds
+T: 0 (  461) A: 0 C:   1799998 Min:         4 Avg:    6.44 Max:        88 
+T: 1 (  462) A: 1 C:   1799996 Min:         4 Avg:    5.35 Max:      2762
+
+
+linux 6.4.11 tt
+T: 0 (  470) A: 0 C:   1799998 Min:         5 Avg:    6.02 Max:      2781 
+T: 1 (  471) A: 1 C:   1799996 Min:         4 Avg:    5.97 Max:       152
+
+
+linux 6.4.11 eevdf
+T: 0 (  472) A: 0 C:   1800001 Min:         4 Avg:    6.03 Max:      1265 
+T: 1 (  473) A: 1 C:   1800000 Min:         4 Avg:    6.71 Max:       112
+
+
+linux 6.4.11 bore
+T: 0 (  547) A: 0 C:   1799997 Min:         6 Avg:    6.46 Max:       630 
+T: 1 (  548) A: 1 C:   1799995 Min:         5 Avg:    6.31 Max:       100 
+
+linux 6.4.11 xanmod
+T: 0 (  547) A: 0 C:   1799996 Min:         5 Avg:    6.05 Max:       155 
+T: 1 (  548) A: 1 C:   1799994 Min:         4 Avg:    6.02 Max:       161
+
+linux 6.1.46 xanmod rt
+T: 0 (  565) A: 0 C:   1799996 Min:         5 Avg:    6.05 Max:       332 
+T: 1 (  566) A: 1 C:   1799994 Min:         5 Avg:    6.02 Max:       395
+```
+
