@@ -74,7 +74,7 @@ make LLVM=1 LLVM_IAS=1 deb-pkg -j$(nproc)
 ### 四、性能测试
 使用以下命令
 ```
-jitterdebugger -D 1m -c 'stress-ng --cpu-method loop -c 8'
+jitterdebugger -D 30m -c 'stress-ng --cpu-method loop -c 8'
 ```
 对比不同调度器内核
 ```
