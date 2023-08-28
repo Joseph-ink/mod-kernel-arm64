@@ -76,7 +76,31 @@ make LLVM=1 LLVM_IAS=1 deb-pkg -j$(nproc)
 ```
 jitterdebugger -D 30m -c 'stress-ng --cpu-method loop -c 8'
 ```
-对比不同调度器内核
+#### 对比不同调度器内核
+一、oracle arm64 a1
+```
+6.4.12-tkg-cfs-llvm
+T: 0 ( 1208) A: 0 C:   1799999 Min:         2 Avg:    9.63 Max:     50572 
+T: 1 ( 1210) A: 1 C:   1799998 Min:         2 Avg:    7.59 Max:     42076 
+T: 2 ( 1211) A: 2 C:   1799998 Min:         2 Avg:    9.69 Max:     38229
+
+6.4.12-tkg-bore-llvm
+T: 0 ( 1330) A: 0 C:   1799999 Min:         2 Avg:    6.29 Max:     19347 
+T: 1 ( 1331) A: 1 C:   1799999 Min:         2 Avg:    5.82 Max:     18931 
+T: 2 ( 1332) A: 2 C:   1799999 Min:         2 Avg:    6.19 Max:     19111
+
+
+6.4.12-tkg-eevdf-llvm
+T: 0 ( 1193) A: 0 C:   1799999 Min:         2 Avg:   14.78 Max:     47044 
+T: 1 ( 1195) A: 1 C:   1799999 Min:         2 Avg:    8.69 Max:     37081 
+T: 2 ( 1196) A: 2 C:   1799999 Min:         2 Avg:    8.00 Max:     40972
+
+6.4.12-tkg-tt-llvm
+T: 0 ( 1079) A: 0 C:   1800000 Min:         2 Avg:   10.85 Max:     48461 
+T: 1 ( 1081) A: 1 C:   1799999 Min:         2 Avg:   12.28 Max:     39420 
+T: 2 ( 1082) A: 2 C:   1799999 Min:         2 Avg:    6.61 Max:     38230
+```
+二、aws x86_64 cascade lake
 ```
 linux 6.4.0
 T: 0 ( 8353) A: 0 C:   1799996 Min:         5 Avg:    6.83 Max:      1178 
