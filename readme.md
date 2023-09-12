@@ -41,7 +41,7 @@ debian/canonical-revoked-certs.pem
 3.编译内核
 建议方法
 ```
-make KCFLAGS="-mcpu=neoverse-n1 -fomit-frame-pointer -pipe" -j$(nproc)
+make KCFLAGS="-pipe" -j$(nproc)
 ```
 
 4.生成deb包
@@ -66,7 +66,7 @@ make LLVM=1 LLVM_IAS=1 menuconfig
 -fexcess-precision=fast
 
 4.编译内核
-make LLVM=1 LLVM_IAS=1 KCFLAGS="-mcpu=neoverse-n1 -fomit-frame-pointer -pipe" -j$(nproc)
+make LLVM=1 LLVM_IAS=1 KCFLAGS="-pipe" -j$(nproc)
 
 5.生成deb包
 make LLVM=1 LLVM_IAS=1 deb-pkg -j$(nproc)
