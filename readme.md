@@ -101,7 +101,21 @@ T: 2 ( 1196) A: 2 C:   1799999 Min:         2 Avg:    8.00 Max:     40972
 T: 0 ( 1079) A: 0 C:   1800000 Min:         2 Avg:   10.85 Max:     48461 
 T: 1 ( 1081) A: 1 C:   1799999 Min:         2 Avg:   12.28 Max:     39420 
 T: 2 ( 1082) A: 2 C:   1799999 Min:         2 Avg:    6.61 Max:     38230
+
+5.15.0-1040-oracle
+T: 0 (150224) A: 0 C:    299997 Min:         3 Avg:   10.97 Max:     27733 
+T: 1 (150225) A: 1 C:    299995 Min:         3 Avg:   11.90 Max:     27496 
+T: 2 (150226) A: 2 C:    299991 Min:         3 Avg:    9.73 Max:     27798
+
+6.5.4-tkg-bore-eevdf-gcc
+T: 0 ( 1214) A: 0 C:    299998 Min:         2 Avg:   10.04 Max:     34891 
+T: 1 ( 1215) A: 1 C:    299998 Min:         2 Avg:    9.96 Max:     32721 
+T: 2 ( 1216) A: 2 C:    299997 Min:         2 Avg:    9.59 Max:     33785
+
+6.5.4-tkg-bore-eevdf-llvm
+
 ```
+
 2、aws x86_64 cascade lake
 ```
 6.5.2-xanmod1-gcc
