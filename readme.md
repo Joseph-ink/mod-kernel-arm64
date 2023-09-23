@@ -112,8 +112,6 @@ T: 0 ( 1214) A: 0 C:    299998 Min:         2 Avg:   10.04 Max:     34891
 T: 1 ( 1215) A: 1 C:    299998 Min:         2 Avg:    9.96 Max:     32721 
 T: 2 ( 1216) A: 2 C:    299997 Min:         2 Avg:    9.59 Max:     33785
 
-6.5.4-tkg-bore-eevdf-llvm
-
 ```
 
 2、aws x86_64 cascade lake
