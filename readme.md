@@ -15,20 +15,31 @@ apt-get install -y git jq htop iperf3 net-tools jitterdebugger stress-ng vim dev
 apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper bc ccache cpio fakeroot kmod libncurses5-dev lz4 qtbase5-dev rsync schedtool zstd clang llvm lld
 ```
 
-3.获取内核源代码（目前版本6.4.11-xanmod1）
+3.获取内核源代码（目前版本6.10.7）
 ```
-git clone -b 6.4.11-xanmod1 https://github.com/xanmod/linux.git
-cd linux
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.10.7.tar.xz
+tar -xvf linux-6.10.7.tar.xz
+cd linux-6.10.7
 ```
 
 ### 二、使用默认GNU/GCC编译
 
-1.配置内核
+1. 复制现有内核配置
+```
+cp /boot/config-$(uname -r) .config
+```
+
+2. 更新配置文件
+```
+yes '' | make oldconfig
+```
+
+3. 可选：更细致的配置内核
 ```
 make menuconfig
 ```
 
-2.处理（可能）错误
+4.处理（可能）错误
 ```
 vi .config
 ```
@@ -38,13 +49,24 @@ debian/canonical-certs.pem
 debian/canonical-revoked-certs.pem
 ```
 
-3.编译内核
+5.编译内核deb包
 建议方法
+```
+make -j$(nproc) bindeb-pkg
+```
+
+针对甲骨文Oracle Ampere A1 Neoverse-N1架构优化
+```
+make KCFLAGS="-march=armv8.2-a+fp16+dotprod -mtune=neoverse-n1" -j$(nproc) bindeb-pkg
+```
+
+**或者**
+5.编译内核
 ```
 make KCFLAGS="-pipe" -j$(nproc)
 ```
 
-4.生成deb包
+6.生成deb包
 ```
 make deb-pkg -j$(nproc)
 ```
