@@ -7,12 +7,12 @@
 1.安装常用工具
 ```
 apt-get update
-apt-get install -y git curl jq htop iperf3 net-tools ethtool jitterdebugger stress-ng vim devscripts socat wget net-tools make pkg-config libmnl-dev libatm1-dev libbpf-dev libtirpc-dev libcap-dev libdb-dev software-properties-common dwarves dnsutils unzip
+apt-get install -y git curl jq htop iperf3 net-tools ethtool jitterdebugger stress-ng vim devscripts socat wget net-tools make pkg-config libmnl-dev libatm1-dev libbpf-dev libtirpc-dev libcap-dev libdb-dev dwarves dnsutils unzip
 ```
 
 2.准备编译环境
 ```
-apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper bc ccache cpio fakeroot kmod libncurses5-dev lz4 qtbase5-dev libpcre3-dev zlib1g-dev rsync schedtool zstd clang llvm lld
+apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev debhelper bc ccache cpio fakeroot kmod libncurses5-dev lz4 qtbase5-dev zlib1g-dev rsync schedtool zstd libdw-dev pkg-config dpkg-dev libudev-dev libpci-dev libiberty-dev autoconf dkms pahole clang llvm lld
 ```
 
 3.获取内核源代码（目前版本6.10.7）
